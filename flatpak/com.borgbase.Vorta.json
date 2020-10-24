@@ -4,7 +4,6 @@
     "runtime-version": "5.14",
     "sdk": "org.kde.Sdk",
     "command": "vorta",
-    "branch": "devel",
     "finish-args": [
         "--socket=fallback-x11",
         "--share=ipc",
