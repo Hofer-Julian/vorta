@@ -46,7 +46,7 @@
             "name": "vorta",
             "buildsystem": "simple",
             "build-commands": [
-                "make flatpak-install"
+                "make flatpak-install-devel"
             ],
             "sources": [
                 {

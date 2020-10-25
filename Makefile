@@ -59,12 +59,17 @@ translations-pull:  ## Download .ts from Transifex.
 translations-to-qm:  ## Compile .ts text files to binary .qm files.
 	for f in $$(ls ${VORTA_SRC}/i18n/ts/vorta.*.ts); do lrelease $$f -qm ${VORTA_SRC}/i18n/qm/$$(basename $$f .ts).qm; done
 
-flatpak-install: translations-to-qm
+flatpak-prerequisite: translations-to-qm
 	pip3 install --prefix=/app --no-deps .
 	install -D ${FLATPAK_XML} /app/share/metainfo/com.borgbase.Vorta.appdata.xml
-	install -D src/vorta/assets/icons/icon.svg /app/share/icons/hicolor/scalable/apps/com.borgbase.Vorta.svg
 	install -D package/icon-symbolic.svg /app/share/icons/hicolor/symbolic/apps/com.borgbase.Vorta-symbolic.svg
 	install -D src/vorta/assets/metadata/com.borgbase.Vorta.desktop /app/share/applications/com.borgbase.Vorta.desktop
+
+flatpak-install-release: flatpak-prerequisite
+	install -D src/vorta/assets/icons/icon.svg /app/share/icons/hicolor/scalable/apps/com.borgbase.Vorta.svg
+
+flatpak-install-devel: flatpak-prerequisite
+	install -D src/vorta/assets/icons/icon.Devel.svg /app/share/icons/hicolor/scalable/apps/com.borgbase.Vorta.svg
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
