@@ -1,0 +1,18 @@
+on:
+  push:
+    branches: [master]
+  pull_request:
+name: flatpak
+jobs:
+  flatpak-builder:
+    name: "Flatpak Builder"
+    runs-on: ubuntu-latest
+    container:
+      image: docker.io/bilelmoussaoui/flatpak-github-actions
+      options: --privileged
+    steps:
+    - uses: actions/checkout@v2
+    - uses: bilelmoussaoui/flatpak-github-actions@v1
+      with:
+        bundle: "vorta-dev.flatpak"
+        manifest-path: "flatpak/com.borgbase.Vorta.json"
