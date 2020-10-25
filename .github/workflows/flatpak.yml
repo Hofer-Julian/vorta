@@ -15,4 +15,4 @@ jobs:
     - uses: bilelmoussaoui/flatpak-github-actions@v1
       with:
         bundle: "vorta-dev.flatpak"
-        manifest-path: "flatpak/com.borgbase.Vorta.json"
+        manifest-path: "flatpak/com.borgbase.Vorta.Devel.json"
