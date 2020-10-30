@@ -12,7 +12,7 @@ jobs:
       options: --privileged
     steps:
     - uses: actions/checkout@v2
-    - uses: bilelmoussaoui/flatpak-github-actions@v1
+    - uses: bilelmoussaoui/flatpak-github-actions@v2
       with:
         bundle: "vorta-dev.flatpak"
         manifest-path: "flatpak/com.borgbase.Vorta.Devel.json"
